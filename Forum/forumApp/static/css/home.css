@@ -1,0 +1,71 @@
+div.scrollDivHor{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+}
+
+.scrollDivHor .scrollEle{
+  flex: 0 0 auto;
+  margin-left: 5px;
+  border: 1px solid gray;
+}
+
+.div-link:hover {
+  text-decoration: none;
+}
+
+.div-link:active{
+  text-decoration: none;
+}
+
+.div-link{
+  text-decoration: none;
+}
+
+#text,#dv-form{
+  background-color: transparent;
+  color: white;
+}
+
+#subq{
+  background-color: transparent;
+  border: none;
+}
+/*
+.ct{
+  text-decoration: none;
+}
+
+.ch{
+  text-decoration: none;
+}
+
+.ctx{
+  text-decoration: none;
+}
+
+.ct:hover{
+  text-decoration: none;
+}
+
+.ch:hover{
+  text-decoration: none;
+}
+
+.ctx:hover{
+  text-decoration: none;
+}
+
+.ct:active{
+  text-decoration: none;
+}
+
+.ch:active{
+  text-decoration: none;
+}
+
+.ctx:actice{
+  text-decoration: none;
+}
+  
+*/

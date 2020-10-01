@@ -1,0 +1,63 @@
+{% extends 'home/index.html' %}
+{% block title %} All Answers {% endblock %}
+{% load static %}
+
+   
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="alert alert-primary m-2" role="alert">
+     <p>{{headData.question}}</p>
+     <hr>
+     <p class="m-0">This Questions is from  <b>{{headData.block}}</b> Block</p>
+  </div>
+</div>
+ <h4 class="text-light text-center">All Answers</h4>
+
+<div class="container p-4">
+ {% if allAnswers %}
+   {% for ans in allAnswers %}
+      <div class="alert alert-success" role="alert">
+        <p>{{ans}}</p>
+        <hr>
+        <p class="mb-0">Answer post By  <b>{{ans.user_id.user_name}}</b></p>
+      </div>
+   {% endfor %}
+  
+  {% else %}
+    <div class="alert alert-success" role="alert">
+       <h4 class="alert-heading">Sorry!</h4>
+       <p>There is no any answers posted..</p>
+       <hr>
+       <p class="mb-0">waite community for response...</p>
+    </div>
+  {% endif %}
+</div>
+
+    {% if session.isLogin %}
+      <div class="container mb-3">
+        <form method="post" action="addAns">
+          {% csrf_token %}
+          <div class="row">
+            <div class="form-group col-10 mr-0" id="dv-form">
+              <textarea class="form-control" required id="text" rows="1" name="answer" placeholder="post your answers..."></textarea>
+            </div>
+            <input type="text" class="d-none" name="post_question" value="{{headData.question}}" />
+            <input type="text" class="d-none" name="post_block" value="{{headData.block}}" />
+            <div class="col m-0 p-0 pr-3">
+              <button type="submit" class="m-0 p-0" id="subq">
+                <svg width="2.3em" height="2.3em" viewBox="0 0 16 16" class="bi bi-arrow-up-square text-light m-0 p-0" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    {% endif %}
+{% endblock %}
+     

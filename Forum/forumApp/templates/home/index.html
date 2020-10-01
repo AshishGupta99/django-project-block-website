@@ -1,0 +1,271 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block style %}{% endblock %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="body">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">
+      {% if session.isLogin %}
+        {{session.username}}
+      {% else %}
+          Navbar
+      {% endif %}
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">
+            <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-house-door mb-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
+              <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+            </svg>
+            Home <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav my-2 my-lg-0">
+       {% if not session.isLogin %}
+        <li class="nav-item text-light" data-toggle="modal" data-target="#signup">
+          <div class="text-light nav-link">
+            <svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-file-earmark-person mb-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+              <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
+              <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+              <path d="M8 12c4 0 5 1.755 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-.245S4 12 8 12z" />
+            </svg>
+            Sign Up
+          </div>
+        </li>
+
+        <li class="nav-item text-light" data-toggle="modal" data-target="#login">
+          <div class="text-light nav-link">
+            <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+              <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+            </svg>
+            Log In
+          </div>
+        </li>
+       {% else %}
+        <li class="nav-item text-light" data-toggle="modal" data-target="#logout">
+          <div class="text-light nav-link">
+            <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-box-arrow-in-left mb-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+              <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+            </svg>
+            Log Out
+          </div>
+        </li>
+       {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <div class="p-4 mt-1"></div>
+  {% if error %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+       <strong>error! please try again</strong> <br>{{error}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  {% endif %}
+  
+ 
+ 
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/tech3.jpg' %}" class="d-block w-100" alt="image">
+      <div class="carousel-caption d-block  d-mb-block mb-0"><br>
+        <h4 class="d-none">welcome to our tech forum</h4>
+        <p>Ask any Questions , Doubts and Query Related to technology and other topics</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/tech2.jpg' %}" class="d-block w-100" alt="image">
+      <div class="carousel-caption d-block d-md-block">
+        <h4 class="position-static">Easy to Use</h4>
+        <p>Just login and Create topic related discussions block. no go inside that block page and ask your Queries.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/tech1.jpg' %}" class="d-block w-100" alt="image">
+      <div class="carousel-caption d-block d-md-block">
+        <h4>Giving Response</h4>
+        <p>If you want to give the answer as a response ,then click on question and go inside that question page now post your answers</p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+ {% block body %}{% endblock %}
+  <!-- Signup Modal -->
+  <div class="modal fade" id="signup" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="border rounded border-info p-2 m-3">
+            <form action="signup" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="form-group col">
+                  <label for="fname">First Name</label>
+                  <input type="text" class="form-control form-control-sm" id="fname" name="fname" value="{{data.fname}}">
+                </div>
+                <div class="form-group col">
+                  <label for="lname">Last Name</label>
+                  <input type="text" class="form-control form-control-sm" id="lname" name="lname" value="{{data.lname}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" class="form-control form-control-sm" id="username" name="username" value="{{data.username}}">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" placeholder="example@gmail.com" class="form-control form-control-sm" id="exampleInputEmail1" name="email" value="{{data.email}}" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="row">
+                <div class="form-group col">
+                  <label for="password1"><small>Password</small></label>
+                  <input type="password" placeholder="********" class="form-control form-control-sm" id="password1" name="password1" value="{{data.password1}}">
+                </div>
+                <div class="form-group col">
+                  <label for="password2"><small>Re-enter Password</small></label>
+                  <input type="password" placeholder="********" class="form-control form-control-sm" id="password2" name="password2" value="{{data.password2}}">
+                </div>
+              </div>
+              <div class="text-center pl-5 pr-5">
+                <button type="submit" class="btn btn-info btn-sm btn-block">Create an account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- login Modal -->
+  <div class="modal fade" id="login" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Log In</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="border rounded p-3">
+            <div class="border rounded border-info p-2 m-3">
+              <form action="login" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="usernamelgn">User Name</label>
+                  <input type="text" class="form-control form-control-sm" id="usernamelgn" name="usernamelgn" value="{{data2.username}}">
+                </div>
+                
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" placeholder="********" class="form-control form-control-sm" id="password" name="password" value="{{data2.password}}">
+                </div>
+                
+                <div class="text-center pl-5 pr-5">
+                  <button type="submit" class="btn btn-info btn-sm btn-block">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- logout Modal -->
+  <div class="modal fade" id="logout" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmation!!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mb-0">
+          <p class="alert alert-warning"><b>Do you really want to logout your account</b></p>
+        </div>
+        
+        <div class="pl-2 pr-2">
+         <div class="modal-footer row">
+          <button type="button" class="btn btn-secondary btn-block col" data-dismiss="modal">No</button>
+          <a href="logout" class="btn btn-primary btn-block col">Yes</a>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="mb-0 p-2"></div>
+  <footer class="bg-dark fixed-bottom">
+    <p class="text-white text-center p-2 mb-0">
+      copyright 2020 || All Rights Reserved
+    </p>
+  </footer>
+  <!-- Optional JavaScript -->
+  
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block jstag %}{% endblock %}
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    $('.carousel').carousel({
+        interval: 500
+     });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  
+</body>
+</html>
